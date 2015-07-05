@@ -1,0 +1,4 @@
+services:
+#    abroad_crud.example:
+#        class: Abroad\Bundle\CrudBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

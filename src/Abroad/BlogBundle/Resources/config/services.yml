@@ -1,0 +1,9 @@
+services:
+#    abroad_blog.example:
+#        class: Abroad\BlogBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    abroad_blog.twig.extension:
+        class: Abroad\BlogBundle\Twig\Extensions\AbroadBlogExtension
+        tags:
+            - { name: twig.extension }

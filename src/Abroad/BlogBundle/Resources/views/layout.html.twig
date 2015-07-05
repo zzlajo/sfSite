@@ -1,0 +1,13 @@
+{# src/Abroad/BlogBundle/Resources/views/layout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/abroadblog/css/blog.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/abroadblog/css/sidebar.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+    
+{% block sidebar %}
+    {% render controller("AbroadBlogBundle:Page:sidebar") %} 
+{% endblock %}
+{#    {% block fos_user_content %}ggg {% endblock %} #}

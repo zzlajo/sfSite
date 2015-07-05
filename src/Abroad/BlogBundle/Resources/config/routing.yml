@@ -1,0 +1,41 @@
+# abroad_blog_homepage:
+#    path:     /hello/{name}
+#    defaults: { _controller: AbroadBlogBundle:Default:index }
+    
+# src/Abroad/BlogBundle/Resources/config/routing.yml
+AbroadBlogBundle_homepage:
+    pattern:  /
+    defaults: { _controller: AbroadBlogBundle:Page:index }
+    requirements:
+        _method:  GET
+
+Abroad_about:
+    resource: "@AbroadBlogBundle/Controller/PageController.php"
+    type: annotation
+#    pattern: /about
+#    defaults: {_controller: AbroadBlogBundle:Page:about}
+#    requirements:
+#        _method: GET
+
+AbroadBlogBundle_contact:
+    pattern: /contact
+    defaults: {_controller: AbroadBlogBundle:Page:contact}
+    requirements:
+        _method: GET|POST
+
+AbroadBlogBundle_blog_show:
+    pattern: /{id}/{slug}
+    defaults: {_controller: AbroadBlogBundle:Blog:show}
+    requirements:
+        _method: GET
+        id: \d+
+
+AbroadBlogBundle_comment_create:
+    pattern: comment/{blog_id}
+    defaults: {_controller: AbroadBlogBundle:Comment:create}
+    requirements:
+        _method: POST
+        blog_id: \d+
+
+
+

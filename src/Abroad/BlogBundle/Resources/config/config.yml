@@ -1,0 +1,8 @@
+## YAML Template.
+# src/Abroad/BlogBundle/Resources/config/config.yml
+parameters:
+    # Abroad contact email address
+    abroad_blog.emails.contact_email: zuber.zlajo@gmail.com
+    
+    #Blogger max latest comments
+    abroad_blog.comments.latest_comment_limit: 7

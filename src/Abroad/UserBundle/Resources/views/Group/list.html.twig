@@ -1,0 +1,19 @@
+{% extends 'AbroadUserBundle::layout.html.twig' %}
+{#{% extends "FOSUserBundle::layout.html.twig" %}#}
+{#{% extends '::base.html.twig' %}#}
+
+{% block fos_user_content %}
+          <header id="header">
+                <div class="top">
+                        <nav>
+                            <ul class="navigation">
+                                <li><a href="{{ path('fos_user_group_new') }}">New Group</a></li>
+                                <li><a href="{{ path('fos_user_group_list') }}">Groups</a></li>
+                            </ul>
+                        </nav>
+                </div>
+            </header>
+    {% include "AbroadUserBundle:Group:list_content.html.twig" %}
+{#    {% include "FOSUserBundle:Group:list_content.html.twig" %}#}
+xxxxxxxx2
+{% endblock fos_user_content %}
