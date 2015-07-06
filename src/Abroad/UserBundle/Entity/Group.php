@@ -41,4 +41,19 @@ class Group extends BaseGroup
         return $this->id;
     }
     
+    public function addUser($user)
+    {
+        if (!$this->getUsers()->contains($user)) {
+            $this->getUsers()->add($user);
+        }
+
+        return $this;
+    }
+
+
+    public function getUsers()
+    {
+        return $this->users ?: $this->users = new ArrayCollection();
+    }
+    
 }
