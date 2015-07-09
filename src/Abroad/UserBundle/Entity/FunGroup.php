@@ -36,9 +36,15 @@ class FunGroup
      */
     private $content;
 
+    
     /**
-     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", mappedBy="funGroups")
+     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", inversedBy="users", cascade={"persist"})
+     * @ORM\JoinTable(name="fun_group",
+     *	    joinColumns={@ORM\JoinColumn(name="fun_group_id", referencedColumnName="id")},
+     *	    inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     * )
      */
+
     private $users;
     
     /**
@@ -63,9 +69,11 @@ class FunGroup
      * @return FunGroup
      */
     public function addUser($user) {
-	if (!$this->getUsers()->contains($user)) {
-	    $this->getUsers()->add($user);
-	}
+//	if (!$this->getUsers()->contains($user)) {
+//	    $this->getUsers()->add($user);
+//	}
+	$this->users[] = $user;
+
 	return $this;
     }
 

@@ -21,15 +21,20 @@ class FunGroupController extends Controller {
 	
 	if ($form->isValid()) {
 //	    die('validno');
-	    $em = $this->getDoctrine()->getEntityManager();
 //	    $ff = 
 		    $funGroup->addUser($this->getUser());
+
+	    $em = $this->getDoctrine()->getEntityManager();
+//$em = $this->get('doctrine')->getManager();
+
 //		    $funGroup->setUsers($this->getUser());
 //	    var_dump($this->getUser());
 //	    var_dump($ff); die;
 //	    $group->addUser($this->getUser());
 	    $em->persist($funGroup);
 	    $em->flush();
+
+	    
 	    
 //	    return $this->redirect($this->generateUrl('AbroadUserBundle:FunGroup:show.html.twig'));
 	    return $this->redirectToRoute('abroad_user_fungroup_list');

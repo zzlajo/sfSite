@@ -45,11 +45,7 @@ class User extends BaseUser
     protected $myFriends;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", inversedBy="users", cascade={"persist"})
-     * @ORM\JoinTable(name="fun_group",
-     *	    joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *	    inverseJoinColumns={@ORM\JoinColumn(name="fun_group_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", mappedBy="funGroups")
      */
     protected $funGroups;
 
