@@ -1,0 +1,12 @@
+{#{% trans_default_domain 'AbroadUserBundle' %}#}
+
+<div class="fos_user_group_list">
+    <ul>
+    {% for group in groups %}
+        <li><a href="{{ path('abroad_user_fungroup_show',  { 'id': group.id, 'slug': group.slug } ) }}">{{ group.getName() }}</a> - 
+{#            <a href="{{ path('fos_user_group_edit', {'groupName': group.getName()} ) }}">{{ 'group.list.change'|trans }}</a>#}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{#fos_user_group_edit" path="/{groupName}/edit" #}

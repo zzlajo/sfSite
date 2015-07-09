@@ -53,7 +53,7 @@ class Group extends BaseGroup
 
     public function getUsers()
     {
-        return $this->users ?: $this->users = new ArrayCollection();
+        return $this->users ?: $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }

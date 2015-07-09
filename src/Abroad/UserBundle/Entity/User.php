@@ -43,13 +43,22 @@ class User extends BaseUser
      *      )
      **/
     protected $myFriends;
-
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", inversedBy="users", cascade={"persist"})
+     * @ORM\JoinTable(name="fun_group",
+     *	    joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *	    inverseJoinColumns={@ORM\JoinColumn(name="fun_group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $funGroups;
 
     public function __construct() {
 	parent::__construct();
         $this->groups = new ArrayCollection();
 	$this->friendsWithMe = new ArrayCollection();
 	$this->myFriends = new ArrayCollection();
+	$this->funGroups = new ArrayCollection();
     }
 
     
@@ -74,6 +83,7 @@ class User extends BaseUser
             $this->friends->add($user);
             $user->addFriend($this);
         }
+	return $this;
     }
 
     /**
@@ -86,6 +96,7 @@ class User extends BaseUser
             $this->friends->removeElement($user);
             $user->removeFriend($this);
         }
+	return $this;
     }
 
 

@@ -1,0 +1,14 @@
+{% extends 'AbroadUserBundle::layout.html.twig' %}
+
+{% block body %}
+    <article class="blog">
+        <header>
+            <h2>{{ group.name }}</h2>
+        </header>
+        <div>
+            <p>{{ group.content }}</p>
+        </div>
+    </article>
+
+{% endblock %}
+

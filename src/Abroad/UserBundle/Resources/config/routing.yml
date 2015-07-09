@@ -1,11 +1,37 @@
-abroad_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AbroadUserBundle:Default:index }
+#abroad_user_homepage:
+#    path:     /hello/{name}
+#    defaults: { _controller: AbroadUserBundle:Default:index }
+
+#abroad_user_fungroup_new:
+#    pattern: /new
+#    defaults: { _controller: AbroadUserBundle:FunGroup:new}
+#    requirements:
+#        _method: GET
+        
+abroad_user_fungroup_new:
+    pattern:   /new
+    defaults: {_controller: AbroadUserBundle:FunGroup:new}
+    requirements:
+        _method: GET|POST
+
+abroad_user_fungroup_list:
+    pattern:   /list
+    defaults: {_controller: AbroadUserBundle:FunGroup:list}
+    requirements:
+        _method: GET
+        
+abroad_user_fungroup_show:
+    pattern: /{id}/{slug}
+    defaults: {_controller: AbroadUserBundle:FunGroup:show}
+    requirements:
+        _method: GET
+        id: \d+
+    
 
 #fos_user_group_list:
 #    pattern:   /list
 #    defaults: {_controller: AbroadUserBundle:Group:list}
-#    requeriments:
+#    requirements:
 #        _method: GET
 
 
