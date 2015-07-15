@@ -1,0 +1,19 @@
+{% extends 'AbroadUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+
+<div class="fos_user_group_list">
+    <ul>
+        {% for user in usersAll %}
+        <li> <a href="{{path('abroad_user_profile_show', { 'id': user.id}) }}">{{user.username}}</a> 
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{#
+    {% for group in groups %}
+        <li><a href="{{ path('abroad_user_fungroup_show',  { 'id': group.id, 'slug': group.slug } ) }}">{{ group.getName() }}</a> - 
+#}
+
+{% endblock %}

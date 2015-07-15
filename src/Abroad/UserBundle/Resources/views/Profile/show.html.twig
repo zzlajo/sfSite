@@ -1,0 +1,9 @@
+{% extends "AbroadUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% if addFriend == true %}
+        {% include "AbroadUserBundle:Profile:show_content_friend.html.twig" %}
+    {% else %}
+        {% include "AbroadUserBundle:Profile:show_content.html.twig" %}
+    {% endif %}
+{% endblock fos_user_content %}

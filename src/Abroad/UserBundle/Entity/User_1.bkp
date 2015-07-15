@@ -21,16 +21,12 @@ class User extends BaseUser
      */
     protected $id;
 
-//    /**
-//     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\Group", inversedBy="users")
-//     * @ORM\JoinTable(name="fos_user_user_group",
-//     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-//     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-//     * )
-//     */
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\Group", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\Group", inversedBy="users")
+     * @ORM\JoinTable(name="fos_user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
      */
     protected $groups;
 
@@ -48,8 +44,15 @@ class User extends BaseUser
      **/
     protected $myFriends;
     
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", inversedBy="users", cascade={"persist"})
+//     * @ORM\JoinTable(name="fun_group",
+//     *	    joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+//     *	    inverseJoinColumns={@ORM\JoinColumn(name="fun_group_id", referencedColumnName="id")}
+//     * )
+//     */
     /**
-     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", mappedBy="funGroups")
      */
     protected $funGroups;
 
@@ -59,7 +62,6 @@ class User extends BaseUser
 	$this->friendsWithMe = new ArrayCollection();
 	$this->myFriends = new ArrayCollection();
 	$this->funGroups = new ArrayCollection();
-	$this->roles = new ArrayCollection();
     }
 
     
@@ -99,34 +101,7 @@ class User extends BaseUser
         }
 	return $this;
     }
-    
-    /**
-     * @param  User $user
-     * @return void
-     */
-    public function getFrineds() {
 
-	return $this->myFriends->toArray();
-	
-    }
-    
-    /**
-     * Gets the groups granted to the user.
-     *
-     * @return Collection
-     */
-    // ovo sam omogucio pa onemogucio kad sam imao problema prilikom logovanja vendor/friendsofsymfony/user-bundle/Model/User.php Warning: array_merge(): Argument #2 is not an array
-//    public function getGroups()
-//    {
-////        return $this->groups ?: $this->groups = new ArrayCollection();
-//        return $this->groups = new ArrayCollection();
-//    }
-
-//        public function addFunGroups($funGroup) {
-//
-//		$this->funGroups[] = $funGroup;
-//
-//    }
 
 //    public function __construct()
 //    {

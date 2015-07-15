@@ -12,6 +12,7 @@ group:
         deleted: The group has been deleted
     list:
         change: Change
+        delete: Delete
 
 # Security
 security:
@@ -26,6 +27,7 @@ profile:
     show:
         username: Username
         email: Email
+        addfriend: Add Friend
     edit:
         submit: Update
     flash:

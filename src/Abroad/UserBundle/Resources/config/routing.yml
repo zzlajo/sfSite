@@ -9,24 +9,43 @@
 #        _method: GET
         
 abroad_user_fungroup_new:
-    pattern:   /new
+    pattern: /fungroup/new
     defaults: {_controller: AbroadUserBundle:FunGroup:new}
     requirements:
         _method: GET|POST
 
 abroad_user_fungroup_list:
-    pattern:   /list
+    pattern: /fungroup/list
     defaults: {_controller: AbroadUserBundle:FunGroup:list}
     requirements:
         _method: GET
         
 abroad_user_fungroup_show:
-    pattern: /{id}/{slug}
+    pattern: /fungroup/{id}/{slug}
     defaults: {_controller: AbroadUserBundle:FunGroup:show}
     requirements:
         _method: GET
         id: \d+
+        
+abroad_user_users_list:
+    pattern: /users/list
+    defaults: {_controller: AbroadUserBundle:Friends:listUsers}
+    requirements:
+        _method: GET
+        
+abroad_user_profile_show:
+    pattern: /user/{id}
+    defaults: {_controller: AbroadUserBundle:Profile:showOne}
+    requirements:
+        _method: GET
+        id: \d+
     
+#abroad_user_add_friend:
+#    pattern: /addfriend/{id}
+#    defaults: {_controller: AbroadUserBundle:Friends:addFriend}
+#    requirements:
+#        _method: GET
+#        id: \d+
 
 #fos_user_group_list:
 #    pattern:   /list

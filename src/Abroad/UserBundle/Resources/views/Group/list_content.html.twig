@@ -4,9 +4,11 @@
     <ul>
     {% for group in groups %}
         <li><a href="{{ path('fos_user_group_show', {'groupName': group.getName()} ) }}">{{ group.getName() }}</a> - 
-            <a href="{{ path('fos_user_group_edit', {'groupName': group.getName()} ) }}">{{ 'group.list.change'|trans }}</a>
+            <a href="{{ path('fos_user_group_edit', {'groupName': group.getName()} ) }}">{{ 'group.list.change'|trans }}</a> - 
+            <a href="{{ path('fos_user_group_delete', {'groupName': group.getName()} ) }}">{{ 'group.list.delete'|trans }}</a>
         </li>
     {% endfor %}
     </ul>
 </div>
 {#fos_user_group_edit" path="/{groupName}/edit" #}
+

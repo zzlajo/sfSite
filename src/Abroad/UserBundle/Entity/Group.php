@@ -20,15 +20,22 @@ class Group extends BaseGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
      protected $id;
-     
-    /**
-     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", mappedBy="groups")
-     */
+     /**
+      * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", inversedBy="groups")
+      * @ORM\JoinTable(name="fos_user_user_group",
+      *	    joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
+      *	    inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+      * )
+      */
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", mappedBy="groups")
+//     */
      protected $users;
 
 
     public function __construct() {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+	$this->roles = array();
     }
     
     /**

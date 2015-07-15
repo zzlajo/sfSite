@@ -4,6 +4,10 @@ namespace Abroad\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 /**
  * UserRepository
  *
@@ -12,7 +16,26 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
-    
+    /**
+     * @param integer $id required user id
+     * 
+     * @return array 
+     * 
+     * pronadji sve usere sem trenutno ulogovanog
+     */
+    public function getUsersWithoutCurrent($cId) {
+
+	$qb = $this->createQueryBuilder('u')
+		->select('u')
+//		->from('AbroadUserBundle:User', 'u')
+		->where('u.id != :cId')
+		->orderBy('u.id', 'ASC')
+		->setParameter('cId', $cId);
+	
+	return $qb->getQuery()
+		->getResult();
+	
+    }
 //    /**
 //     * @param string $role
 //     *
