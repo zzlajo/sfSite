@@ -108,8 +108,8 @@ class User extends BaseUser
     public function removeFriend(User $user)
     {
 	    $this->friendsWithMe->removeElement($user);
-//        if ($this->friendsWithMe->contains($user)) {
-//            $this->friendsWithMe->removeElement($user);
+//        if ($this->myFriends->contains($user)) {
+//            $this->myFriends->removeElement($user);
 //            $user->removeFriend($this);
 //	    echo " 111111111111 <br>";
 //        } 
