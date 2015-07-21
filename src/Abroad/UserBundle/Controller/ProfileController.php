@@ -49,16 +49,27 @@ class ProfileController extends BaseController
 	}
 	$userCurrent = $this->getUser();
 	$userCurrentId = $userCurrent->getId();
+
+	$friends = $userCurrent->isFriend($user);
+//	var_dump($friends); die;
 	
 	if ($id == $userCurrentId) {
 	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
 		'user' => $user,
-		'addFriend' => FALSE
+		'addFriend' => FALSE,
+		'removeFriend' => FALSE
+	    ));	    
+	} elseif ($userCurrent->isFriend($user)) {
+	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
+		'user' => $user,
+		'addFriend' => FALSE,
+		'removeFriend' => TRUE
 	    ));	    
 	} else {
 	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
 		'user' => $user,
-		'addFriend' => TRUE
+		'addFriend' => TRUE,
+		'removeFriend' => FALSE
 	    ));
 	}
 	

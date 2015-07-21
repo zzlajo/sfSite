@@ -20,23 +20,75 @@ use Abroad\UserBundle\Entity\User;
  */
 class FriendsController extends Controller {
     
-    public function addFriendAction ($id, $text='Insert Link') {
+    public function addFriendAction ($id) {
 
-//	var_dump($id); 
-//	die;
-//	
-//	$currentUser = $this->getUser();
-//	return true;
+	var_dump($id); 
+	$em = $this->getDoctrine()->getEntityManager();
+	
+	$userFriend = $em->getRepository('AbroadUserBundle:User')->find($id);
+	
+	$user = $this->getUser();
+	
+	if(!$user) {
+	    throw $this->createNotFoundException('The user which you want to add on your friends, it doesn`t exist :( ');
+	}
+	$friend = $user->addFriend($userFriend);
 
-    $output = '<a href="'.'AbroadUserBundle:Friends:listUsers'.'" ';
-    $output .= '>' . $text . '</a>';
-//    $response->setContent($output);
-//    $response->setStatusCode(200);
-//    $response->headers->set('Content-Type', 'text/html');
-//    return $response;
-     return new Response($output);
+
+    try {
+	$em->persist($user);
+	$em->flush($user); 
+    } catch(\Doctrine\DBAL\DBALException $e)
+    {
+	throw $e;
+//	echo $e->getMessage(),"<br>";
+//	echo  $e->getCode(),"<br>";
+    }
+
+	return new Response($friend);
 	
     }
+
+    public function removeFriendAction ($id) {
+
+	var_dump($id); 
+	$em = $this->getDoctrine()->getEntityManager();
+	
+	$userFriend = $em->getRepository('AbroadUserBundle:User')->find($id);
+	$friendId = $userFriend->getId();
+	
+	$user = $this->getUser();
+	$userId = $user->getId();
+	
+	if(!$user) {
+	    throw $this->createNotFoundException('The user which you want to remove from your friends, it doesn`t exist :( ');
+	}
+//	$friend = $user->removeFriend($userFriend);
+	
+	$removeF = $this->getDoctrine()->getRepository('AbroadUserBundle:User')->removeRelatedFriend($userId, $friendId);
+        
+//	$em = $this->getDoctrine()->getManager();
+//        $user = $em->find('ClubUserBundle:User', $user_id)
+//	$group->removeUser($user);
+//        $em->persist($group);
+//        $em->flush();
+
+
+
+    try {
+	$em->persist($user);
+	$em->flush($user); 
+    } catch(\Doctrine\DBAL\DBALException $e)
+    {
+	throw $e;
+//	echo $e->getMessage(),"<br>";
+//	echo  $e->getCode(),"<br>";
+    }
+
+	return new Response($friend);
+	
+    }
+
     
     public function listUsersAction( ) {
 	$user = $this->getUser();

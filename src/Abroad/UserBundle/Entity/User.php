@@ -79,36 +79,75 @@ class User extends BaseUser
      * @return void
      */
     public function addFriend(User $user)
-    {
-        if (!$this->friends->contains($user)) {
-            $this->friends->add($user);
+    {	// provera da li postoji u bazi vec dodat user u myFriedns ili friendsWithMe u user
+        if (!$this->myFriends->contains($user) && !$this->friendsWithMe->contains($user)) {
+            $this->myFriends->add($user);
             $user->addFriend($this);
         }
 	return $this;
     }
-
+//    public function addFriend(User $user)
+//    {
+//        if (!$this->getFrineds()->contains($user)) {
+//            $this->getFrineds()->add($user);
+//        }
+//
+//        return $this;
+//    }
+//public function addFriend(User $user)
+//{
+//    $this->myFriends[] = $user;
+//    $user->myFriends[] = $this; // php allows to access private members of objects of the same type
+//            return $this;
+//
+//}
     /**
      * @param  User $user
      * @return void
      */
     public function removeFriend(User $user)
     {
-        if ($this->friends->contains($user)) {
-            $this->friends->removeElement($user);
-            $user->removeFriend($this);
-        }
-	return $this;
+	    $this->friendsWithMe->removeElement($user);
+//        if ($this->friendsWithMe->contains($user)) {
+//            $this->friendsWithMe->removeElement($user);
+//            $user->removeFriend($this);
+//	    echo " 111111111111 <br>";
+//        } 
+//	elseif ($this->friendsWithMe->contains($user)) {
+//            $this->friendsWithMe->removeElement($user);
+//            $user->removeFriend($this);
+//	    	    echo "22222222222 <br>";
+//
+//	} 
+//	else { 	    echo " 33333333333 <br>";
+//	}
+//	return $this;
+//    public function removeUser(\Club\UserBundle\Entity\User $users)
+//    {
+//        $this->users->removeElement($users);
+//    }
     }
     
     /**
      * @param  User $user
      * @return void
      */
-    public function getFrineds() {
+    public function getFriends() {
 
 	return $this->myFriends->toArray();
 	
     }
+
+    public function isFriend(User $user)
+    {	// provera da li postoji u bazi vec dodat user u myFriedns ili friendsWithMe u user
+        if ($this->myFriends->contains($user) || $this->friendsWithMe->contains($user)) {
+	    return TRUE;
+	}
+    }
+//    public function getFrineds()
+//    {
+//        return $this->myFriends ?: $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
+//    }
     
     /**
      * Gets the groups granted to the user.

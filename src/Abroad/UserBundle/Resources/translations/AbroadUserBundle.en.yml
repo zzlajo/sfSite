@@ -28,6 +28,7 @@ profile:
         username: Username
         email: Email
         addfriend: Add Friend
+        removefriend: Remove Friend
     edit:
         submit: Update
     flash:

@@ -40,12 +40,19 @@ abroad_user_profile_show:
         _method: GET
         id: \d+
     
-#abroad_user_add_friend:
-#    pattern: /addfriend/{id}
-#    defaults: {_controller: AbroadUserBundle:Friends:addFriend}
-#    requirements:
-#        _method: GET
-#        id: \d+
+abroad_user_add_friend:
+    pattern: /addfriend/{id}
+    defaults: {_controller: AbroadUserBundle:Friends:addFriend}
+    requirements:
+        _method: GET
+        id: \d+
+
+abroad_user_un_friend:
+    pattern: /unfriend/{id}
+    defaults: {_controller: AbroadUserBundle:Friends:removeFriend}
+    requirements:
+        _method: GET
+        id: \d+
 
 #fos_user_group_list:
 #    pattern:   /list

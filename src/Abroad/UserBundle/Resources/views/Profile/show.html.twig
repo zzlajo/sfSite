@@ -3,6 +3,8 @@
 {% block fos_user_content %}
     {% if addFriend == true %}
         {% include "AbroadUserBundle:Profile:show_content_friend.html.twig" %}
+    {% elseif removeFriend == true %}
+        {% include "AbroadUserBundle:Profile:show_content_unfriend.html.twig" %}
     {% else %}
         {% include "AbroadUserBundle:Profile:show_content.html.twig" %}
     {% endif %}

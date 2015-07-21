@@ -8,6 +8,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * UserRepository
  *
@@ -36,6 +40,60 @@ class UserRepository extends EntityRepository
 		->getResult();
 	
     }
+    
+    /**
+     * @param integer $userId curent user id
+     * @param integer $friendId	friend id
+     * 
+     * @return array
+     * 
+     * obrisi red u tabeli friend bez obzira da li je user_id u vezi sa friend_user_id ili obrnuto
+     */
+    
+    public function removeRelatedFriend ($userId, $friendId) {
+	var_dump($userId);
+	var_dump($friendId);
+	$em = $this->getEntityManager();
+	$qb = $em->createQueryBuilder();
+////		$qb = $this->createQueryBuilder('friends')
+	$qb->delete('f')
+//		->select()
+		->from('friends', 'f')
+		->where('(f.user_id = :userId AND f.friend_user_id = :friendId) OR '
+		      . '(f.friend_user_id = :userId AND f.user_id = :friendId) ')
+		->setParameter('userId', $userId)
+		->setParameter('friendId', $friendId);
+//		
+//        $em = $this->getEntityManager();
+//       $query = $em->createQuery(
+//                    "DELETE F
+//                    FROM  friends
+//	        WHERE F.(f.user_id = ".$userId ." AND f.friend_user_id = ". $friendId .") "
+//	       . "OR (f.friend_user_id = ".$userId ." AND f.user_id = ". $friendId .") )");
+//	       
+//        $users = $query->getResult();
+//        return $users;	
+
+//	$queryBuilder = $entityManager->createQueryBuilder();
+//    $queryBuilder
+//        ->delete('My\Entity\User', 'u')
+//        ->where($queryBuilder->expr()->eq('u.id', ':userId'));
+	
+	return $qb->getQuery()
+		->execute();
+	
+
+//$dm->createQueryBuilder('User')
+//    ->remove()
+//    ->field('num_logins')->equals(0)
+//    ->getQuery()
+//    ->execute();	
+	
+    }
+
+
+
+
 //    /**
 //     * @param string $role
 //     *
