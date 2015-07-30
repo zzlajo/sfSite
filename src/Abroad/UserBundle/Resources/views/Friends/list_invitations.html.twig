@@ -5,11 +5,12 @@
 
 <div class="fos_user_group_list">
     <p><a href="{{path('abroad_list_invitations')}}">
-            {{ 'friends.list_users.youHave'|trans }}  {{ invatations | length }} {{ 'friends.list_users.friendRequest'|trans }}
+            {{ 'friends.list_users.youHave'|trans }} {{ invatations | length }} {{ 'friends.list_users.friendRequest'|trans }}
     </a></p>
     <ul>
-        {% for user in usersAll %}
-        <li> <a href="{{path('abroad_user_profile_show', { 'id': user.id}) }}">{{user.username}}</a> 
+        {% for invatation in invatations %}
+        <li> <a href="{{path('abroad_user_profile_show', { 'id': invatation.senderId}) }}">{{invatation.senderId}}</a> -
+            <a href="{{path('abroad_accept_invitation', {'senderId': invatation.senderId}) }}"> {{'friends.list_users.accept'|trans}} </a>
         </li>
         {% endfor %}
     </ul>

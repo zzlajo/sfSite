@@ -34,6 +34,13 @@ profile:
     flash:
         updated: The profile has been updated
 
+#Friends
+friends:
+    list_users:
+        youHave: You have
+        friendRequest: Friend Request
+        accept: Accept Friend Invitation
+
 # Password change
 change_password:
     submit: Change password

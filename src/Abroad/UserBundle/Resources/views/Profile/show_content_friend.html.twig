@@ -1,17 +1,22 @@
 {% trans_default_domain 'AbroadUserBundle' %}
 
+{% for flashMessage in app.session.flashbag.get('RequestFriend-notice') %}
+<div class="blogger-notice">
+    {{ render_flash_alerts() }}
+</div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('AddFriend-notice') %}
+<div class="blogger-notice">
+{{ flashMessage }}
+    {{ render_flash_alerts() }}
+</div>
+{% endfor %}
+
 <div class="fos_user_user_show">
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
     <p>
-        <a href="{{ path('abroad_user_add_friend', { 'id': user.id }) }}">{{'profile.show.addfriend'|trans}}</a>        
+{#        <a href="{{ path('abroad_user_add_friend', { 'id': user.id }) }}">{{'profile.show.addfriend'|trans}}</a>#}
+        <a href="{{ path('abroad_user_set_friend_invitation', { 'id': user.id }) }}">{{'profile.show.addfriend'|trans}}</a>
     </p>
 </div>
-{#<li>{{ render(controller('myNewBundle:Nav:renderNav', { 'target': 'my_new_pods', 'text': 'Reusable Pods' })) }}</li>#}
-
-{#{{ path('AbroadBlogBundle_blog_show', { 'id': user.id }) }}"#}
-
-{#    {{ render(controller(
-        'AppBundle:Article:recentArticles',
-        { 'max': 3 }
-    )) }}#}

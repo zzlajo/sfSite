@@ -1,0 +1,15 @@
+{% trans_default_domain 'AbroadUserBundle' %}
+{% extends 'AbroadUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+
+<div class="fos_user_group_list">
+
+    <ul>
+        {% for friend in friends %}
+        <li> <a href="{{path('abroad_user_profile_show', { 'id': friend.id}) }}">{{friend.username}}</a> 
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

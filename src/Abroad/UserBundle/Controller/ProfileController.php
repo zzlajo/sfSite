@@ -41,7 +41,7 @@ class ProfileController extends BaseController
      * Show required user
      */
     
-    public function showOneAction($id) {
+    public function showOneAction($id, $flash = FALSE, Request $request) {
 
 	$user = $this->getDoctrine()->getRepository('AbroadUserBundle:User')->find($id);
 	if (!$user && !is_object($user)) {
@@ -51,8 +51,10 @@ class ProfileController extends BaseController
 	$userCurrentId = $userCurrent->getId();
 
 	$friends = $userCurrent->isFriend($user);
-//	var_dump($friends); die;
 	
+	$flash = $request->query->get('flash') == TRUE ? $this->get('session')->getFlashBag()->add('Friend-notice','You sent to '.$user->getUsername().' friend request successfully!') : false ;
+
+
 	if ($id == $userCurrentId) {
 	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
 		'user' => $user,

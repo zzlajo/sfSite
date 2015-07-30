@@ -40,10 +40,10 @@ class User extends BaseUser
     protected $friendsWithMe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", inversedBy="friendsWithMe")
+     * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\User", inversedBy="friendsWithMe", cascade={"persist","remove"})
      * @ORM\JoinTable(name="friends",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id", onDelete="cascade", onDelete="CASCADE")}
      *      )
      **/
     protected $myFriends;
@@ -107,7 +107,14 @@ class User extends BaseUser
      */
     public function removeFriend(User $user)
     {
-	    $this->friendsWithMe->removeElement($user);
+
+//	    $aaa = $this->myFriends->getValues($user);		    
+	$this->myFriends->removeElement($user);
+	    
+//$aa = $this->friendsWithMe->getValues($user);		    
+
+//	    $myF = $this->friendsWithMe->removeElement($user);
+
 //        if ($this->myFriends->contains($user)) {
 //            $this->myFriends->removeElement($user);
 //            $user->removeFriend($this);
@@ -116,11 +123,8 @@ class User extends BaseUser
 //	elseif ($this->friendsWithMe->contains($user)) {
 //            $this->friendsWithMe->removeElement($user);
 //            $user->removeFriend($this);
-//	    	    echo "22222222222 <br>";
-//
-//	} 
-//	else { 	    echo " 33333333333 <br>";
 //	}
+//	
 //	return $this;
 //    public function removeUser(\Club\UserBundle\Entity\User $users)
 //    {
@@ -138,6 +142,17 @@ class User extends BaseUser
 	
     }
 
+    /**
+     * @param  User $user
+     * @return void
+     */
+    public function getFriendsWith() {
+
+	return $this->friendsWithMe->toArray();
+	
+    }
+
+    
     public function isFriend(User $user)
     {	// provera da li postoji u bazi vec dodat user u myFriedns ili friendsWithMe u user
         if ($this->myFriends->contains($user) || $this->friendsWithMe->contains($user)) {

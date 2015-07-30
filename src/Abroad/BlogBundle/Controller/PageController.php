@@ -46,8 +46,8 @@ $products = $query -> getResult ();
 //		->addOrderBy('b.created', 'DESC')
 //		->getQuery()
 //		->getResult();
-        $user = $this->container->get('fos_user.user_manager')
-				->findUserByUsername('zlajo');
+//        $user = $this->container->get('fos_user.user_manager')
+//				->findUserByUsername('zlajo');
 //	var_dump($user); die;
 	
 	return $this->render('AbroadBlogBundle:Page:index.html.twig', array(

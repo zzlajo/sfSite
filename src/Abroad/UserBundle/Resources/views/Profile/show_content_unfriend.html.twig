@@ -1,5 +1,12 @@
 {% trans_default_domain 'AbroadUserBundle' %}
 
+
+{% for flashMessage in app.session.flashbag.get('UnFriend-notice') %}
+<div class="blogger-notice">
+{{ flashMessage }}
+</div>
+{% endfor %}
+
 <div class="fos_user_user_show">
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>

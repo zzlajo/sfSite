@@ -54,6 +54,29 @@ abroad_user_un_friend:
         _method: GET
         id: \d+
 
+abroad_user_set_friend_invitation:
+    pattern: /setinvitation/{id}
+    defaults: {_controller: AbroadUserBundle:Friends:setFriendInvitation}
+    requirements:
+        _method: GET
+        id: \d+
+        
+abroad_list_invitations:
+    pattern: /listinvitations
+    defaults: {_controller: AbroadUserBundle:Friends:listFriendInvitations}
+    requirements:
+        _method: GET
+
+abroad_accept_invitation:
+    pattern: /accept/{senderId}
+    defaults: {_controller: AbroadUserBundle:Friends:acceptFriendInvitation}
+    requirements:
+        _method: GET
+        
+abroad_my_friends:
+    pattern: /myfriends
+    defaults: {_controller: AbroadUserBundle:Friends:listFriends}
+        
 #fos_user_group_list:
 #    pattern:   /list
 #    defaults: {_controller: AbroadUserBundle:Group:list}
