@@ -24,6 +24,7 @@ class AppKernel extends Kernel
 	    new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 	    new FOS\UserBundle\FOSUserBundle(),
             new Abroad\UserBundle\AbroadUserBundle(),
+	    new Ras\Bundle\FlashAlertBundle\RasFlashAlertBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
