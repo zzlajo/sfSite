@@ -16,7 +16,7 @@ class CommentRepository extends EntityRepository
 	$qb = $this->createQueryBuilder('c')
 		->select('c')
 		->where('c.blog = :blog_id')
-		->addOrderBy('c.created', 'DESC')
+		->addOrderBy('c.created', 'ASC')
 		->setParameter('blog_id', $blogId);
 	
 /////////// DQL
