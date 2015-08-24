@@ -287,6 +287,12 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
     
     public function listFriendsAction() {
 	$user = $this->getUser();
+	
+	// if user not loged in redirect to login page
+	if (!$user) {
+		return $this->redirect('login');
+	}
+	
 //	$userId = $user->getId();
 	$friends1 = $user->getFriends();
 	$friends2 = $user->getFriendsWith();
