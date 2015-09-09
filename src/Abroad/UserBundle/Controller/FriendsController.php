@@ -203,7 +203,8 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
 	
     }
 
-    public function removeFriendAction ($id) {
+    public function removeFriendAction ($id)
+    {
 
     	$user = $this->getUser();
     	
@@ -220,119 +221,45 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
 		    throw $this->createNotFoundException('The user which you want to remove from your friends, it doesn`t exist :( ');
 		}
 		
-		$user->removeFriend($userFriend);
+		if ($user->getFriends()->contains($userFriend)) {
+			$user->getFriends()->removeElement($userFriend);
+		} elseif ($user->getFriendsWith()->contains($userFriend)) {
+			$userFriend->getFriends()->removeElement($user);
+		}
 		
-		$em->persist($user);
-		$em->flush($user);
+		$em->flush();
 		
 		$this->addFlash('notice', 'You are remove '.$userFriend->getUsername().' from your friends!');
 		
 		return $this->redirectToRoute('abroad_my_friends');
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-//$emm = $this->getDoctrine()->getEntityManager();
-//$query = $emm->createQuery(
-//    'DELETE FROM AbroadUserBundle:Friends f WHERE f.user_id = :userId AND f.friend_user_id = :friendId) OR '
-//						. '(f.friend_user_id = :userId AND f.user_id = :friendId)'
-//)->setParameter('userId', $userId)->setParameter('friendId', $friendId);
-//
-//$query->execute();
-
-
-//		->where('(f.user_id = :userId AND f.friend_user_id = :friendId) OR '
-//		      . '(f.friend_user_id = :userId AND f.user_id = :friendId) ')
-//		->setParameter('userId', $userId)
-//		->setParameter('friendId', $friendId);
-//		
-
-
-//	echo '<pre> 11111111111 myFriends $user ';
-//	\Doctrine\Common\Util\Debug::dump($user->myFriends);
-//	echo '</pre>';
-//	echo '<pre> 22222222222 friendsWithMe $user ';
-//	\Doctrine\Common\Util\Debug::dump($user->friendsWithMe);
-//	echo '</pre>';
-//
-//	echo '<pre> 11111111111 myFriends $userFriend ';
-//	\Doctrine\Common\Util\Debug::dump($userFriend->myFriends);
-//	echo '</pre>';
-//	echo '<pre> 22222222222 friendsWithMe $userFriend ';
-//	\Doctrine\Common\Util\Debug::dump($userFriend->friendsWithMe);
-//	echo '</pre>';
-//die;
-
-	$friend = $user->removeFriend($userFriend);
-//	$friendd = $userFriend->removeFriend($user);
-
-//	$removeF = $this->getDoctrine()->getRepository('AbroadUserBundle:User')->removeRelatedFriend($userId, $friendId);
-        
-//	$em = $this->getDoctrine()->getManager();
-//        $user = $em->find('ClubUserBundle:User', $user_id)
-//	$group->removeUser($user);
-//        $em->persist($group);
-//        $em->flush();
-
-
-
-    try {
-	$em->persist($user);
-	$em->flush($user); 
-    } catch(\Doctrine\DBAL\DBALException $e)
-    {
-	throw $e;
-//	echo $e->getMessage(),"<br>";
-//	echo  $e->getCode(),"<br>";
-    }
-		$this->get('session')->getFlashBag()->add('UnFriend-notice','You are remove '.$userFriend->getUsername().' from your friends!');
-
-	$referer = $this->getRequest()->headers->get('referer');
-	if ($referer == NULL) {
-	    $url = $this->router->generate('fallback_url');
-	} else {
-	    $url = $referer;
-	}
-	return $this->redirect($referer);
-//	return new Response($friend);
-	
     }
 
     
-    public function listFriendsAction() {
-	$user = $this->getUser();
+    public function listFriendsAction()
+    {
+    	
+		$user = $this->getUser();
+		
+		// if user not loged in redirect to login page
+		if (!$user) {
+			return $this->redirect('login');
+		}
+		
+	/*
+	 * This code below is changed with new method in User entity!!!
+	 * Check this Zlajo :)
+	 */
+	/* $friends1 = $user->getFriends()->toArray();
+	$friends2 = $user->getFriendsWith()->toArray();
 	
-	// if user not loged in redirect to login page
-	if (!$user) {
-		return $this->redirect('login');
-	}
+	$friends = array_merge($friends1, $friends2); */
 	
-//	$userId = $user->getId();
-	$friends1 = $user->getFriends();
-	$friends2 = $user->getFriendsWith();
-	
-	$friends = array_merge($friends1, $friends2);
-	
-	return $this->render('AbroadUserBundle:Friends:list_friends.html.twig', array (
-	    'friends'=>$friends,
-	));
-//	$this->getDoctrine()->getRepository('AbroadUserBundle:User')->
+		$friends = $user->getAllFriends();
+		
+		return $this->render('AbroadUserBundle:Friends:list_friends.html.twig', array (
+		    'friends'=>$friends,
+		));
 	
     }
     
