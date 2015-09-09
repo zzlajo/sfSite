@@ -107,29 +107,7 @@ class User extends BaseUser
      */
     public function removeFriend(User $user)
     {
-
-//	    $aaa = $this->myFriends->getValues($user);		    
-	$this->myFriends->removeElement($user);
-	    
-//$aa = $this->friendsWithMe->getValues($user);		    
-
-//	    $myF = $this->friendsWithMe->removeElement($user);
-
-//        if ($this->myFriends->contains($user)) {
-//            $this->myFriends->removeElement($user);
-//            $user->removeFriend($this);
-//	    echo " 111111111111 <br>";
-//        } 
-//	elseif ($this->friendsWithMe->contains($user)) {
-//            $this->friendsWithMe->removeElement($user);
-//            $user->removeFriend($this);
-//	}
-//	
-//	return $this;
-//    public function removeUser(\Club\UserBundle\Entity\User $users)
-//    {
-//        $this->users->removeElement($users);
-//    }
+    	$this->myFriends->removeElement($user);
     }
     
     /**
@@ -138,7 +116,7 @@ class User extends BaseUser
      */
     public function getFriends() {
 
-	return $this->myFriends->toArray();
+		return $this->myFriends;
 	
     }
 
@@ -148,7 +126,7 @@ class User extends BaseUser
      */
     public function getFriendsWith() {
 
-	return $this->friendsWithMe->toArray();
+	return $this->friendsWithMe;
 	
     }
 
@@ -187,4 +165,18 @@ class User extends BaseUser
 //        parent::__construct();
 //        // your own logic
 //    }
+
+    /**
+     * Get all friends as array
+     * 
+     * @return array
+     */
+    public function getAllFriends() {
+    
+    	$friends1 = $this->getFriends()->toArray();
+		$friends2 = $this->getFriendsWith()->toArray();
+	
+		return array_merge($friends1, $friends2);
+    
+    }
 }
