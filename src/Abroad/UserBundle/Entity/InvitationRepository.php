@@ -16,8 +16,8 @@ class InvitationRepository extends EntityRepository
     public function isInvited($senderId, $recipientId) {
 	    $qb = $this->createQueryBuilder('i')
 		    ->select('i.senderId', 'i.recipientId', 'i.id')
-		    ->where('(i.senderId = :senderId AND i.recipientId = :recipientId) OR '
-			    . '(i.senderId = :recipientId AND i.recipientId = :senderId)')
+		    ->where('(i.senderId = :senderId AND i.recipientId = :recipientId AND i.status = false) OR '
+			    . '(i.senderId = :recipientId AND i.recipientId = :senderId AND i.status = false)')
 		    ->setParameter('senderId', $senderId)
 		    ->setParameter('recipientId', $recipientId);
 
@@ -28,7 +28,7 @@ class InvitationRepository extends EntityRepository
     public function checkInvitations($recipientId) {
 	$qb = $this->createQueryBuilder('i')
 		->select('i')
-		->where('i.recipientId = :recipientId and i.status = false')
+		->where('i.recipientId = :recipientId AND i.status = false')
 		->setParameter('recipientId', $recipientId);
 	
 	return $qb->getQuery()
@@ -51,6 +51,21 @@ class InvitationRepository extends EntityRepository
 //			var_dump($aa);			die();
     }
     
+    public function delInvitation($senderId, $recipientId) {
+	$qb = $this->createQueryBuilder('i')
+		->delete('AbroadUserBundle:Invitation','i')
+		->where('(i.senderId = :senderId AND i.recipientId = :recipientId) OR'
+                        . '(i.senderId = :recipientId AND i.recipientId = :senderId)')
+		->setParameters(array (
+		    'senderId'=>$senderId,
+		    'recipientId'=>$recipientId
+		));
+	
+		return $qb->getQuery()
+			->execute();
+			
+//			var_dump($aa);			die();
+    }
     
     
 }
