@@ -2,3 +2,8 @@ services:
 #    abroad_user.example:
 #        class: Abroad\UserBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    abroad.registration.form.type:
+        class: Abroad\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - {name: form.type, alias: abroad_user_registration}

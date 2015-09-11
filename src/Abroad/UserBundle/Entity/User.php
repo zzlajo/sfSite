@@ -5,7 +5,6 @@ namespace Abroad\UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-//    \Doctrine\Common\Collections\ArrayCollection();
 
 /**
  * @ORM\Entity
@@ -52,6 +51,27 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Abroad\UserBundle\Entity\FunGroup", mappedBy="users")
      */
     protected $funGroups;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currentLocation", type="string", length=255)
+     */
+    private $currentLocation;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bornLocation", type="string", length=255)
+     */
+    private $bornLocation;
 
     public function __construct() {
 	parent::__construct();
@@ -179,4 +199,5 @@ class User extends BaseUser
 		return array_merge($friends1, $friends2);
     
     }
+
 }
