@@ -1,41 +1,19 @@
 <?php
 
-namespace Abroad\UserBundle\Form;
+namespace Abroad\UserBundle\Form\Handler;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use FOS\UserBundle\Form\Handler\RegistrationFormHandler as BaseHandler;
+use FOS\UserBundle\Model\UserInterface;
 
-class FunGroupType extends AbstractType
+class RegistrationFormHandler extends BaseHandler
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    protected function onSuccess(UserInterface $user, $confirmation)
     {
-        $builder
-            ->add('name')
-            ->add('content')
-//            ->add('users')
-        ;
-    }
-    
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Abroad\UserBundle\Entity\FunGroup'
-        ));
-    }
+        // Note: if you plan on modifying the user then do it before calling the
+        // parent method as the parent method will flush the changes
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'abroad_userbundle_fungroup';
+        parent::onSuccess($user, $confirmation);
+
+        // otherwise add your functionality here
     }
 }

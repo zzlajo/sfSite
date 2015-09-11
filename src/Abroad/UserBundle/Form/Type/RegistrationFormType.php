@@ -1,12 +1,12 @@
 <?php
 
-namespace Abroad\UserBundle\Form;
+namespace Abroad\UserBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
-class FunGroupType extends AbstractType
+
+class RegistrationFormType extends BaseType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,28 +14,33 @@ class FunGroupType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
-            ->add('content')
-//            ->add('users')
+    parent::buildForm($builder, $options);
+
+    $builder->add('name')
+            ->add('currentLocation')
+            ->add('bornLocation')
         ;
     }
     
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Abroad\UserBundle\Entity\FunGroup'
-        ));
-    }
+//    public function getParent() {
+//        return 'fos_user_registration';
+//    }
+    
+//    /**
+//     * @param OptionsResolverInterface $resolver
+//     */
+//    public function setDefaultOptions(OptionsResolverInterface $resolver)
+//    {
+//        $resolver->setDefaults(array(
+//            'data_class' => 'Abroad\UserBundle\Entity\User'
+//        ));
+//    }
 
     /**
      * @return string
      */
     public function getName()
     {
-        return 'abroad_userbundle_fungroup';
+        return 'abroad_user_registration';
     }
 }
