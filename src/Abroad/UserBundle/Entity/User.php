@@ -79,7 +79,7 @@ class User extends BaseUser
 	$this->friendsWithMe = new ArrayCollection();
 	$this->myFriends = new ArrayCollection();
 	$this->funGroups = new ArrayCollection();
-	$this->roles = new ArrayCollection();
+//	$this->roles = new ArrayCollection();
     }
 
     
