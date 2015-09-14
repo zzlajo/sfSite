@@ -5,6 +5,8 @@
         {% include "AbroadUserBundle:Profile:show_content_friend.html.twig" %}
     {% elseif removeFriend == true %}
         {% include "AbroadUserBundle:Profile:show_content_unfriend.html.twig" %}
+    {% elseif editProfile == true %}
+        {% include "AbroadUserBundle:Profile:show_content_edit.html.twig" %}
     {% else %}
         {% include "AbroadUserBundle:Profile:show_content.html.twig" %}
     {% endif %}

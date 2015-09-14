@@ -55,21 +55,28 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255,  nullable=true)
      */
-    private $name;
+    private $firstName;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+     */
+    private $lastName;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="currentLocation", type="string", length=255)
+     * @ORM\Column(name="currentLocation", type="string", length=255,  nullable=true)
      */
     private $currentLocation;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="bornLocation", type="string", length=255)
+     * @ORM\Column(name="bornLocation", type="string", length=255,  nullable=true)
      */
     private $bornLocation;
 
@@ -79,7 +86,6 @@ class User extends BaseUser
 	$this->friendsWithMe = new ArrayCollection();
 	$this->myFriends = new ArrayCollection();
 	$this->funGroups = new ArrayCollection();
-//	$this->roles = new ArrayCollection();
     }
 
     
@@ -400,5 +406,51 @@ class User extends BaseUser
     public function getFunGroups()
     {
         return $this->funGroups;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 }

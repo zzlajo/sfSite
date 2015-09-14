@@ -41,6 +41,11 @@
                         <nav>
                             <ul class="navigation">
                                 <li><a href="{{ path('AbroadBlogBundle_homepage') }}">Home</a></li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <li><a href="{{ path('fos_user_profile_show') }}">My Profile</a></li>
+                            {% else %}
+                                <li><a href="{{ path('fos_user_registration_register') }}">Registration</a></li>
+                            {% endif %}
                                 <li><a href="{{ path('abroad_user_users_list') }}">Users</a></li>
                                 <li><a href="{{ path('abroad_my_friends') }}">My Friends</a></li>
                                 <li><a href="{{ path('fos_user_group_list') }}">Groups</a></li>

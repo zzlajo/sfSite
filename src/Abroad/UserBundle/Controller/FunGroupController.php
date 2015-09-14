@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Abroad\UserBundle\Form\FunGroupType;
+use Abroad\UserBundle\Form\Type\FunGroupType;
 use Abroad\UserBundle\Entity\FunGroup;
 
 class FunGroupController extends Controller {
@@ -20,11 +20,10 @@ class FunGroupController extends Controller {
 	$form->bind($request);
 	
 	if ($form->isValid()) {
-//	    die('validno');
-//	    $ff = 
-		    $funGroup->addUser($this->getUser());
 
+	    $funGroup->addUser($this->getUser());
 	    $em = $this->getDoctrine()->getEntityManager();
+            
 //$em = $this->get('doctrine')->getManager();
 
 //		    $funGroup->setUsers($this->getUser());

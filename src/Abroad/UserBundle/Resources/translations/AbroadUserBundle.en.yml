@@ -29,6 +29,7 @@ profile:
         email: Email
         addfriend: Add Friend
         removefriend: Remove Friend
+        editprofile: Edit Profile
     edit:
         submit: Update
     flash:

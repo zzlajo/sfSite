@@ -13,6 +13,10 @@ class RegistrationFormHandler extends BaseHandler
         // parent method as the parent method will flush the changes
 
         parent::onSuccess($user, $confirmation);
+        
+        $user->setRole('ROLE_ADMIN');
+//        var_dump($user); die;
+//        $user->updateUser($user);
 
         // otherwise add your functionality here
     }

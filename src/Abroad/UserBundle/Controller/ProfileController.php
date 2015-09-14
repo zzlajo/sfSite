@@ -30,9 +30,10 @@ class ProfileController extends BaseController
         }
 	
 	return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
-//        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
-	    'addFriend' => FALSE
+	    'addFriend' => FALSE,
+            'removeFriend' => FALSE,
+            'editProfile' => TRUE
         ));
 
     }
@@ -59,19 +60,22 @@ class ProfileController extends BaseController
 	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
 		'user' => $user,
 		'addFriend' => FALSE,
-		'removeFriend' => FALSE
+		'removeFriend' => FALSE,
+                'editProfile' => TRUE
 	    ));	    
 	} elseif ($userCurrent->isFriend($user)) {
 	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
 		'user' => $user,
 		'addFriend' => FALSE,
-		'removeFriend' => TRUE
+		'removeFriend' => TRUE,
+                'editProfile' => FALSE                
 	    ));	    
 	} else {
 	    return $this->render('AbroadUserBundle:Profile:show.html.twig', array(
 		'user' => $user,
 		'addFriend' => TRUE,
-		'removeFriend' => FALSE
+		'removeFriend' => FALSE,
+                'editProfile' => FALSE
 	    ));
 	}
 	

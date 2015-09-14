@@ -32,30 +32,38 @@ class UserFixtures implements FixtureInterface, ContainerAwareInterface, Ordered
     {
         $user = new User();
         $user->setUsername('zlajo');
+        $user->setFirstName('Zlatko');
+        $user->setLastName('Zuberic');
         $user->setEmail('zlajo@mail.com');
         $user->setPlainPassword('1111');
         $user->setEnabled(TRUE);
-        $user->setRoles(array());
+        $user->setRoles(array('ROLE_SUPER_ADMIN'));
         $manager->persist($user);
 
         $user = new User();
         $user->setUsername('jana');
+        $user->setFirstName('Janica');
+        $user->setLastName('Jakic');
         $user->setEmail('jana@mail.com');
         $user->setPlainPassword('1111');
         $user->setEnabled(TRUE);
-        $user->setRoles(array());
+        $user->setRoles(array('ROLE_STANDARD'));
         $manager->persist($user);
 
         $user = new User();
         $user->setUsername('mirkan');
+        $user->setFirstName('Mirko');
+        $user->setLastName('Maric');
         $user->setEmail('mirkan@mail.com');
         $user->setPlainPassword('1111');
         $user->setEnabled(TRUE);
-        $user->setRoles(array());
+        $user->setRoles(array('ROLE_USER'));
         $manager->persist($user);
 
         $user = new User();
         $user->setUsername('rade');
+        $user->setFirstName('Radoslav');
+        $user->setLastName('Obradovic');
         $user->setEmail('rade@mail.com');
         $user->setPlainPassword('1111');
         $user->setEnabled(TRUE);
@@ -64,6 +72,8 @@ class UserFixtures implements FixtureInterface, ContainerAwareInterface, Ordered
 
         $user = new User();
         $user->setUsername('lara');
+        $user->setFirstName('Larisa');
+        $user->setLastName('Zajec');
         $user->setEmail('lara@mail.com');
         $user->setPlainPassword('1111');
         $user->setEnabled(TRUE);

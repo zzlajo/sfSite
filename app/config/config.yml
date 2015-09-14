@@ -85,3 +85,6 @@ fos_user:
     registration:
         form:
             type: abroad_user_registration
+    profile:
+        form:
+            type: abroad_user_profile

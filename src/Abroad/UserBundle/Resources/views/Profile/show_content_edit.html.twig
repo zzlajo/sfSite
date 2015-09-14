@@ -1,0 +1,11 @@
+{% trans_default_domain 'AbroadUserBundle' %}
+
+
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p>
+{#        <a href="{{ path('abroad_user_add_friend', { 'id': user.id }) }}">{{'profile.show.addfriend'|trans}}</a>#}
+        <a href="{{ path('fos_user_profile_edit', { 'id': user.id }) }}">{{'profile.show.editprofile'|trans}}</a>
+    </p>
+</div>

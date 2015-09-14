@@ -7,3 +7,10 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - {name: form.type, alias: abroad_user_registration}
+
+    abroad.profile.form.type:
+        class: Abroad\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - {name: form.type, alias: abroad_user_profile}
+
