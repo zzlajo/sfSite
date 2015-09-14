@@ -82,3 +82,6 @@ fos_user:
     user_class: Abroad\UserBundle\Entity\User
     group:
         group_class: Abroad\UserBundle\Entity\Group
+    registration:
+        form:
+            type: abroad_user_registration

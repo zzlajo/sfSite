@@ -200,4 +200,205 @@ class User extends BaseUser
     
     }
 
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set currentLocation
+     *
+     * @param string $currentLocation
+     * @return User
+     */
+    public function setCurrentLocation($currentLocation)
+    {
+        $this->currentLocation = $currentLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get currentLocation
+     *
+     * @return string 
+     */
+    public function getCurrentLocation()
+    {
+        return $this->currentLocation;
+    }
+
+    /**
+     * Set bornLocation
+     *
+     * @param string $bornLocation
+     * @return User
+     */
+    public function setBornLocation($bornLocation)
+    {
+        $this->bornLocation = $bornLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get bornLocation
+     *
+     * @return string 
+     */
+    public function getBornLocation()
+    {
+        return $this->bornLocation;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \FOS\UserBundle\Model\GroupInterface $groups
+     * @return User
+     */
+    public function addGroup(\FOS\UserBundle\Model\GroupInterface $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \FOS\UserBundle\Model\GroupInterface $groups
+     */
+    public function removeGroup(\FOS\UserBundle\Model\GroupInterface $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Add friendsWithMe
+     *
+     * @param \Abroad\UserBundle\Entity\User $friendsWithMe
+     * @return User
+     */
+    public function addFriendsWithMe(\Abroad\UserBundle\Entity\User $friendsWithMe)
+    {
+        $this->friendsWithMe[] = $friendsWithMe;
+
+        return $this;
+    }
+
+    /**
+     * Remove friendsWithMe
+     *
+     * @param \Abroad\UserBundle\Entity\User $friendsWithMe
+     */
+    public function removeFriendsWithMe(\Abroad\UserBundle\Entity\User $friendsWithMe)
+    {
+        $this->friendsWithMe->removeElement($friendsWithMe);
+    }
+
+    /**
+     * Get friendsWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * Add myFriends
+     *
+     * @param \Abroad\UserBundle\Entity\User $myFriends
+     * @return User
+     */
+    public function addMyFriend(\Abroad\UserBundle\Entity\User $myFriends)
+    {
+        $this->myFriends[] = $myFriends;
+
+        return $this;
+    }
+
+    /**
+     * Remove myFriends
+     *
+     * @param \Abroad\UserBundle\Entity\User $myFriends
+     */
+    public function removeMyFriend(\Abroad\UserBundle\Entity\User $myFriends)
+    {
+        $this->myFriends->removeElement($myFriends);
+    }
+
+    /**
+     * Get myFriends
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMyFriends()
+    {
+        return $this->myFriends;
+    }
+
+    /**
+     * Add funGroups
+     *
+     * @param \Abroad\UserBundle\Entity\FunGroup $funGroups
+     * @return User
+     */
+    public function addFunGroup(\Abroad\UserBundle\Entity\FunGroup $funGroups)
+    {
+        $this->funGroups[] = $funGroups;
+
+        return $this;
+    }
+
+    /**
+     * Remove funGroups
+     *
+     * @param \Abroad\UserBundle\Entity\FunGroup $funGroups
+     */
+    public function removeFunGroup(\Abroad\UserBundle\Entity\FunGroup $funGroups)
+    {
+        $this->funGroups->removeElement($funGroups);
+    }
+
+    /**
+     * Get funGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFunGroups()
+    {
+        return $this->funGroups;
+    }
 }

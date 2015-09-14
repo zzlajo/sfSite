@@ -14,7 +14,7 @@ class RegistrationFormType extends BaseType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-    parent::buildForm($builder, $options);
+    //parent::buildForm($builder, $options);
 
     $builder->add('name')
             ->add('currentLocation')
@@ -22,9 +22,9 @@ class RegistrationFormType extends BaseType
         ;
     }
     
-//    public function getParent() {
-//        return 'fos_user_registration';
-//    }
+   public function getParent() {
+       return 'fos_user_registration';
+   }
     
 //    /**
 //     * @param OptionsResolverInterface $resolver
