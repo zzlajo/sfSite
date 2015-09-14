@@ -90,8 +90,8 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
 	
 	$listInvitations = $em->getRepository('AbroadUserBundle:Invitation')->checkInvitations($recipientId);
 	
-	var_dump($listInvitations);
-	die;
+//	var_dump($listInvitations);
+//	die;
 	
     }
     
@@ -155,7 +155,7 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
     
     public function addFriendAction ($id) {
 
-	var_dump($id); 
+//	var_dump($id); 
 	$em = $this->getDoctrine()->getEntityManager();
 	
 	$userFriend = $em->getRepository('AbroadUserBundle:User')->find($id);
@@ -223,8 +223,10 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
 		
 		if ($user->getFriends()->contains($userFriend)) {
 			$user->getFriends()->removeElement($userFriend);
+                        $this->getDoctrine()->getRepository('AbroadUserBundle:Invitation')->delInvitation($user->getId(), $userFriend->getId());
 		} elseif ($user->getFriendsWith()->contains($userFriend)) {
 			$userFriend->getFriends()->removeElement($user);
+                        $this->getDoctrine()->getRepository('AbroadUserBundle:Invitation')->delInvitation($user->getId(), $userFriend->getId());
 		}
 		
 		$em->flush();
@@ -265,6 +267,10 @@ return $this->redirect($this->generateUrl('abroad_user_profile_show', array('id'
     
     public function listUsersAction( ) {
 	$user = $this->getUser();
+	if (!$user) {
+            return $this->redirect('../login');
+	}
+		
 	$cId = $user->getId();
 	
 	$usersAll = $this->getDoctrine()->getRepository('AbroadUserBundle:User')->getUsersWithoutCurrent($cId);
